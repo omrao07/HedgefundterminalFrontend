@@ -2,11 +2,11 @@ import { useMemo, useState } from "react";
 
 /* =========================
    Types
-   ========================= */
+========================= */
 
-type TradingMode = "paper" | "live";
+export type TradingMode = "paper" | "live";
 
-type TabKey =
+export type TabKey =
   | "dashboard"
   | "strategies"
   | "markets"
@@ -15,8 +15,8 @@ type TabKey =
   | "news";
 
 /* =========================
-   Sidebar (INLINE)
-   ========================= */
+   Sidebar
+========================= */
 
 interface SidebarProps {
   activeTab: TabKey;
@@ -36,39 +36,43 @@ function Sidebar({ activeTab, onTabChange }: SidebarProps) {
   return (
     <aside className="w-64 bg-[#111113] p-4">
       <nav className="flex flex-col gap-2">
-        {tabs.map((tab) => (
-          <button
-            key={tab.key}
-            onClick={() => onTabChange(tab.key)}
-            className={`text-left px-3 py-2 rounded ${
-              activeTab === tab.key
-                ? "bg-[#1F1F23] text-white"
-                : "text-gray-400 hover:text-white"
-            }`}
-          >
-            {tab.label}
-          </button>
-        ))}
+        {tabs.map((tab) => {
+          const isActive = activeTab === tab.key;
+
+          return (
+            <button
+              key={tab.key}
+              onClick={() => onTabChange(tab.key)}
+              className={`text-left px-3 py-2 rounded transition ${
+                isActive
+                  ? "bg-[#1F1F23] text-white"
+                  : "text-gray-400 hover:text-white hover:bg-[#1A1A1E]"
+              }`}
+            >
+              {tab.label}
+            </button>
+          );
+        })}
       </nav>
     </aside>
   );
 }
 
 /* =========================
-   Topbar (INLINE)
-   ========================= */
+   Topbar
+========================= */
 
 interface TopbarProps {
   tradingMode: TradingMode;
+  capital: number;
   onModeChange: (mode: TradingMode) => void;
-  dummyCapital: number;
   onCapitalChange: (value: number) => void;
 }
 
 function Topbar({
   tradingMode,
+  capital,
   onModeChange,
-  dummyCapital,
   onCapitalChange,
 }: TopbarProps) {
   return (
@@ -89,7 +93,7 @@ function Topbar({
         <span className="text-sm text-gray-400">Capital:</span>
         <input
           type="number"
-          value={dummyCapital}
+          value={capital}
           onChange={(e) => onCapitalChange(Number(e.target.value))}
           className="w-32 bg-[#1F1F23] px-2 py-1 text-sm rounded"
         />
@@ -99,32 +103,29 @@ function Topbar({
 }
 
 /* =========================
-   Tabs (INLINE STUBS)
-   ========================= */
+   Tabs (temporary stubs)
+========================= */
 
-function DashboardTab({ tradingMode, dummyCapital }: any) {
+interface DashboardProps {
+  tradingMode: TradingMode;
+  capital: number;
+}
+
+function DashboardTab({ tradingMode, capital }: DashboardProps) {
   return (
     <div>
       <h1 className="text-xl font-bold">Dashboard</h1>
       <p>Mode: {tradingMode}</p>
-      <p>Capital: {dummyCapital}</p>
+      <p>Capital: {capital.toLocaleString()}</p>
     </div>
   );
 }
 
-function StrategiesTab() {
-  return <h1 className="text-xl font-bold">Strategies</h1>;
-}
+const StrategiesTab = () => <h1 className="text-xl font-bold">Strategies</h1>;
+const MarketsTab = () => <h1 className="text-xl font-bold">Markets</h1>;
+const ResearchTab = () => <h1 className="text-xl font-bold">Research</h1>;
 
-function MarketsTab() {
-  return <h1 className="text-xl font-bold">Markets</h1>;
-}
-
-function ResearchTab() {
-  return <h1 className="text-xl font-bold">Research</h1>;
-}
-
-function ExecutionTab({ tradingMode }: any) {
+function ExecutionTab({ tradingMode }: { tradingMode: TradingMode }) {
   return (
     <div>
       <h1 className="text-xl font-bold">Execution</h1>
@@ -133,27 +134,22 @@ function ExecutionTab({ tradingMode }: any) {
   );
 }
 
-function NewsTab() {
-  return <h1 className="text-xl font-bold">News</h1>;
-}
+const NewsTab = () => <h1 className="text-xl font-bold">News</h1>;
 
 /* =========================
-   App
-   ========================= */
+   App Root
+========================= */
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<TabKey>("dashboard");
   const [tradingMode, setTradingMode] = useState<TradingMode>("paper");
-  const [dummyCapital, setDummyCapital] = useState(100_000);
+  const [capital, setCapital] = useState<number>(100_000);
 
   const content = useMemo(() => {
     switch (activeTab) {
       case "dashboard":
         return (
-          <DashboardTab
-            tradingMode={tradingMode}
-            dummyCapital={dummyCapital}
-          />
+          <DashboardTab tradingMode={tradingMode} capital={capital} />
         );
       case "strategies":
         return <StrategiesTab />;
@@ -168,7 +164,7 @@ export default function App() {
       default:
         return null;
     }
-  }, [activeTab, tradingMode, dummyCapital]);
+  }, [activeTab, tradingMode, capital]);
 
   return (
     <div className="h-screen bg-[#0D0D0F] text-[#E8E8E8] flex overflow-hidden">
@@ -177,9 +173,9 @@ export default function App() {
       <div className="flex-1 flex flex-col overflow-hidden">
         <Topbar
           tradingMode={tradingMode}
+          capital={capital}
           onModeChange={setTradingMode}
-          dummyCapital={dummyCapital}
-          onCapitalChange={setDummyCapital}
+          onCapitalChange={setCapital}
         />
 
         <main className="flex-1 overflow-auto p-4">

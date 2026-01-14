@@ -1,6 +1,6 @@
 // client.ts
 // Production-ready HTTP client for frontend ↔ backend communication
-// No placeholders, no external dependencies
+// Vercel + FastAPI compatible, env-based backend URL
 
 type HttpMethod = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
 
@@ -43,7 +43,7 @@ export class ApiClient {
 
   async post<T, B = unknown>(
     path: string,
-    body: B,
+    body?: B,
     config?: RequestConfig
   ): Promise<ApiResponse<T>> {
     return this.request<T, B>(path, { ...config, method: "POST", body });
@@ -117,9 +117,7 @@ export class ApiClient {
       };
     } catch (err) {
       if ((err as Error).name === "AbortError") {
-        const timeoutError: ApiError = new Error(
-          "Request timed out"
-        ) as ApiError;
+        const timeoutError: ApiError = new Error("Request timed out") as ApiError;
         timeoutError.status = 408;
         throw timeoutError;
       }
@@ -150,9 +148,11 @@ export class ApiClient {
   }
 }
 
-// Example instantiation (import and reuse across app)
-export const apiClient = new ApiClient(
-  typeof window !== "undefined"
-    ? `${window.location.origin}/api`
-    : "http://localhost:8080/api"
-);
+// ------------------------------------------------------------------
+// Global client instance (Vercel + production safe)
+// ------------------------------------------------------------------
+
+const BACKEND_URL =
+  import.meta.env.VITE_BACKEND_URL || "http://localhost:8080";
+
+export const apiClient = new ApiClient(BACKEND_URL); 
