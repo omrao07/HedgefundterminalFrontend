@@ -3,7 +3,6 @@ import { useState } from "react";
 import { Sidebar } from "./Sidebar";
 import { Topbar, TradingMode } from "./Topbar";
 
-// Tabs
 import { DashboardTab } from "./tabs/DashboardTab";
 import { PortfolioBuilderTab } from "./tabs/PortfolioBuilderTab";
 import { IntelligenceTab } from "./tabs/IntelligenceTab";
@@ -22,12 +21,14 @@ import { QuantModelsTab } from "./tabs/QuantModelsTab";
 import { WizardModeTab } from "./tabs/GodModeTab";
 
 export function TerminalLayout() {
-  const [activeTab, setActiveTab] = useState<string>("dashboard");
+  const [activeTab, setActiveTab] = useState("dashboard");
+  const [tradingMode, setTradingMode] = useState<TradingMode>("paper");
+  const [capital, setCapital] = useState(100_000);
 
   const renderTab = () => {
     switch (activeTab) {
       case "dashboard":
-        return <DashboardTab tradingMode={"paper"} dummyCapital={0} />;
+        return <DashboardTab tradingMode={tradingMode} dummyCapital={capital} />;
       case "portfoliobuilder":
         return <PortfolioBuilderTab />;
       case "intelligence":
@@ -37,9 +38,9 @@ export function TerminalLayout() {
       case "commodities":
         return <CommoditiesTab />;
       case "strategies":
-        return <StrategiesTab tradingMode={"paper"} />;
+        return <StrategiesTab tradingMode={tradingMode} />;
       case "execution":
-        return <ExecutionTab tradingMode={"paper"} />;
+        return <ExecutionTab tradingMode={tradingMode} />;
       case "news":
         return <NewsTab />;
       case "markets":
@@ -59,7 +60,7 @@ export function TerminalLayout() {
       case "wizardmode":
         return <WizardModeTab />;
       default:
-        return <DashboardTab tradingMode={"paper"} dummyCapital={0} />;
+        return <DashboardTab tradingMode={tradingMode} dummyCapital={capital} />;
     }
   };
 
@@ -68,13 +69,13 @@ export function TerminalLayout() {
       <Sidebar activeTab={activeTab} onTabChange={setActiveTab} />
 
       <div className="flex-1 flex flex-col overflow-hidden">
-        <Topbar tradingMode={"paper"} onModeChange={function (mode: TradingMode): void {
-                  throw new Error("Function not implemented.");
-              } } dummyCapital={0} onCapitalChange={function (amount: number): void {
-                  throw new Error("Function not implemented.");
-              } } onCommand={function (command: string): void {
-                  throw new Error("Function not implemented.");
-              } } />
+        <Topbar
+          tradingMode={tradingMode}
+          onModeChange={setTradingMode}
+          dummyCapital={capital}
+          onCapitalChange={setCapital}
+          onCommand={() => {}}
+        />
 
         <main className="flex-1 overflow-auto">
           {renderTab()}
