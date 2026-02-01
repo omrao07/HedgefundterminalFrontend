@@ -3,11 +3,9 @@
 ## ✅ IMPLEMENTED FEATURES
 
 ### 📊 Portfolio Manager Tab (NEW)
-
 **Access:** Sidebar → "Portfolio Mgr" OR Command Bar → `PORT`, `MODEL`, `XRAY`
 
-#### Koyfin Features
-
+#### Koyfin Features:
 1. **Model Portfolios & Dynamic Allocation**
    - Create and manage multiple model portfolios (Balanced, Aggressive, Conservative, Crypto Enhanced)
    - Target vs Current allocation tracking
@@ -60,11 +58,9 @@
 ---
 
 ### 📈 Advanced Charting Tab (NEW)
-
 **Access:** Sidebar → "Charts Pro" OR Command Bar → `CHART`
 
-#### Hammer Pro Features
-
+#### Hammer Pro Features:
 1. **Trade from Chart**
    - Click BUY/SELL buttons directly on chart
    - Quick order placement overlay
@@ -117,26 +113,22 @@
 ## 🔄 ENHANCED EXISTING FEATURES
 
 ### Dashboard Tab
-
 - Crypto asset distribution included
 - Exchange distribution (Binance support)
 - Real-time mode switching (Paper/Live)
 
 ### Analytics Tab
-
 - Correlation heatmaps (existing)
 - Spread analysis (existing)
 - Risk/Return scatter plots (existing)
 
 ### Execution Tab
-
 - Real-time trade feed (existing)
 - Order status tracking (existing)
 - **Ready for:** Level 2/Depth of Book integration
 - **Ready for:** Multi-source news feed integration
 
 ### WatchlistTab
-
 - **Ready for:** Transcript summaries & press releases
 - **Ready for:** Stylebar scores for individual stocks
 
@@ -145,7 +137,7 @@
 ## 📋 KOYFIN FEATURES STATUS
 
 | Feature | Status | Location |
-| --------- | -------- | ---------- |
+|---------|--------|----------|
 | ✅ Model Portfolios & Dynamic Allocation | LIVE | Portfolio Mgr Tab |
 | ✅ Client Portfolios/Household Org | LIVE | Portfolio Mgr Tab |
 | ⏳ Fast Portfolio Importing (PDF/Schwab) | UI Ready | Portfolio Mgr Tab |
@@ -167,7 +159,7 @@
 ## ⚡ HAMMER PRO FEATURES STATUS
 
 | Feature | Status | Location |
-| --------- | -------- | ---------- |
+|---------|--------|----------|
 | ✅ Trade from Chart | LIVE | Charts Pro Tab |
 | ⏳ Real-time Scanning | Pending | - |
 | ⏳ Level 2/Depth of Book | Pending | Execution Tab |
@@ -182,15 +174,13 @@
 
 ## 🎯 COMMAND BAR ACCESS
 
-### New Commands
-
+### New Commands:
 - `PORT` → Portfolio Manager
 - `MODEL` → Model Portfolios section
 - `XRAY` → Holdings X-Ray Analysis
 - `CHART` → Advanced Charting
 
-### Existing Commands (Enhanced)
-
+### Existing Commands (Enhanced):
 - `BHL` → Bloomberg Help
 - `BPS` → Bloomberg Cheat Sheets
 - `XLTP` → Excel Templates
@@ -201,6 +191,7 @@
 
 ## 🗂️ NEW FILE STRUCTURE
 
+```
 components/tabs/
 ├── PortfolioManagerTab.tsx   ✨ NEW - Koyfin portfolio features
 ├── AdvancedChartingTab.tsx   ✨ NEW - Hammer Pro charting
@@ -210,13 +201,13 @@ components/tabs/
 ├── ExecutionTab.tsx          ✅ Ready for Level 2
 ├── NewsTab.tsx               ✅ Ready for multi-source
 └── [20+ other tabs...]
+```
 
 ---
 
 ## 🎨 VISUAL FEATURES
 
-### Portfolio Manager Tab
-
+### Portfolio Manager Tab:
 - 📊 Pie charts for sector/asset distribution
 - 📈 Bar charts for regional exposure
 - 📉 Line charts for performance transformations
@@ -224,8 +215,7 @@ components/tabs/
 - 🏷️ Color-coded percentile badges
 - ⚠️ Alert badges for rebalance triggers
 
-### Advanced Charting Tab
-
+### Advanced Charting Tab:
 - 🕯️ Candlestick/Line/Area charts
 - 📐 Drawing tools toolbar
 - 🔧 Indicator panel with categories
@@ -237,24 +227,21 @@ components/tabs/
 
 ## 🚀 USAGE EXAMPLES
 
-### Creating a Model Portfolio
-
+### Creating a Model Portfolio:
 1. Navigate to Portfolio Manager tab
 2. Click "New Model" button
 3. Set target allocations
 4. Configure rebalancing rules
 5. Assign clients to model
 
-### Trading from Chart
-
+### Trading from Chart:
 1. Open Charts Pro tab
 2. Select symbol and timeframe
 3. Press `B` for Buy or `S` for Sell
 4. Enter quantity in overlay
 5. Confirm order placement
 
-### Analyzing Holdings
-
+### Analyzing Holdings:
 1. Go to Portfolio Mgr → Holdings Matrix
 2. View underlying exposures
 3. Export detailed breakdown

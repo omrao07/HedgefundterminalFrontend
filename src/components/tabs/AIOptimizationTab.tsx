@@ -250,7 +250,7 @@ export function AIOptimizationTab() {
                 </div>
               </div>
             </TabsContent>
-            
+
             {/* News-to-Trade LLM Tab */}
             <TabsContent value="llm" className="mt-0">
               <div className="space-y-4">
@@ -363,7 +363,7 @@ export function AIOptimizationTab() {
                 </div>
               </div>
             </TabsContent>
-            
+
             {/* Quantum Optimization Tab */}
             <TabsContent value="quantum" className="mt-0">
               <div className="space-y-4">

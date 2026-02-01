@@ -321,21 +321,12 @@ export function CommoditiesTab() {
   };
 
   // Generate mock price data for charts
-  type PriceDataPoint = {
-    time: number;
-    open: string;
-    high: string;
-    low: string;
-    close: string;
-    volume: number;
-  };
-
-  const generatePriceData = (symbol: string, timeframe: string): PriceDataPoint[] => {
+  const generatePriceData = (symbol: string, timeframe: string) => {
     const dataPoints = timeframe === "1D" ? 78 : timeframe === "1W" ? 35 : timeframe === "1M" ? 30 : timeframe === "3M" ? 90 : 252;
     const commodity = commodities.find(c => c.symbol === symbol);
     const basePrice = commodity?.price || 78;
     
-    const data: PriceDataPoint[] = [];
+    const data = [];
     for (let i = 0; i < dataPoints; i++) {
       const volatility = 0.03;
       const trend = 0.0002;

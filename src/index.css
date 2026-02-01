@@ -234,6 +234,7 @@
   }
 
   img, svg, video, canvas, audio, iframe, embed, object {
+    vertical-align: middle;
     display: block;
   }
 
@@ -249,6 +250,9 @@
     letter-spacing: inherit;
     color: inherit;
     opacity: 1;
+    --lightningcss-light: initial;
+    --lightningcss-dark: ;
+    color-scheme: light;
     background-color: #0000;
     border-radius: 0;
   }
@@ -260,6 +264,9 @@
     letter-spacing: inherit;
     color: inherit;
     opacity: 1;
+    --lightningcss-light: initial;
+    --lightningcss-dark: ;
+    color-scheme: light;
     background-color: #0000;
     border-radius: 0;
   }
@@ -3911,7 +3918,6 @@
 
   :is(.\*\:data-\[slot\=select-value\]\:line-clamp-1 > *)[data-slot="select-value"] {
     -webkit-line-clamp: 1;
-    line-clamp: 1;
     -webkit-box-orient: vertical;
     display: -webkit-box;
     overflow: hidden;
@@ -4430,14 +4436,12 @@ html {
 }
 
 .glass-effect {
-  backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   background: #151519b3;
   border: 1px solid #ffffff0d;
 }
 
 .glass-effect-strong {
-  backdrop-filter: blur(30px);
   -webkit-backdrop-filter: blur(30px);
   background: #151519d9;
   border: 1px solid #ffffff14;
